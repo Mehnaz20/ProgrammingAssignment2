@@ -1,11 +1,11 @@
-###get and set the inverse of matrix
-makeCacheMatrix <- function(x = matrix()) {
+###obtain inverse of matrix
+makeCacheMatrix <- function(z = matrix()) {
   value <- NULL
   set <- function(y) {
-    x <<- y
+    z <<- y
     value <<- NULL
   }
-  get <- function() x
+  get <- function() z
   inverse_set <- function(inverse) value <<- inverse 
   inverse_get <- function() value
   list(set = set,
@@ -15,15 +15,15 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-cacheSolve <- function(x, ...) {
-  ###get the inverse
-  value <- x$inverse_get()
+cacheSolve <- function(z, ...) {
+  ###obtain the inverse
+  value <- z$inverse_get()
   if (!is.null(value)) {
     message("get data")
     return(value)
   }
-  mat <- x$get()
+  mat <- z$get()
   value <- solve(mat, ...)
-  x$inverse_set(value)
-  return(value)  ###return
+  z$inverse_set(value)
+  return(value)  ###return the value
 }
